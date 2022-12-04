@@ -1,0 +1,75 @@
+(base) PS C:\Users\PRAJWAL> python
+Python 3.9.13 (main, Aug 25 2022, 23:51:50) [MSC v.1916 64 bit (AMD64)] :: Anaconda, Inc. on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import mysql.connector
+>>> mydb=mysql.connector.connect(host="localhost",user="root",password="")
+>>> mycursor=mydb.cursor()
+>>> mycursor.execute("create database libray18")
+>>> mycursor=mydb.cursor()
+>>> mycursor.execute("show databases")
+>>> for x in mycursor:
+...     print(x)
+...
+('employee',)
+('employee76',)
+('employee789',)
+('information_schema',)
+('libray',)
+('libray18',)
+('libray32',)
+('minproject',)
+('mydatabase',)
+('mydatabase1',)
+('mysql',)
+('performance_schema',)
+('phpmyadmin',)
+('praju',)
+('prajwal',)
+('project',)
+('test',)
+mycursor=mydb.cursor()
+>>> mycursor.execute("create table libray8095(name varchar(255),address varchar(200),id varchar(20),ph varchar(20),price varchar(200))")
+>>> mycursor=mydb.cursor()
+>>> mycursor.execute("show tables")
+>>> for x in mycursor:
+...     print(x)
+...
+('libray8095',)
+>>> mycursor=mydb.cursor()
+>>> sql="insert intp libray8095(name,address,id,ph,price)values('prajwal','BRANGLOR','18','8095368502','550')"
+sql = "insert into libray8095 (name,address,id,ph,price)values('prajwal','banglor','8095','8095368502','550')"
+>>> mycursor.execute(sql)
+>>> mydb.commit()
+print(mycursor.rowcount,"record inserted.")
+1 record inserted.
+>>> mycursor=mydb.cursor()
+>>> sql="insert into libray8095(name,address,id,ph,price)values(%s,%s)"
+>>> val=[
+... ]
+>>> sql="insert into libray8095(name,address,id,ph,price)values(%s,%s,%s,%s,%s)"
+>>> val=[
+... ('devika','lowstreet','56','65764878','250'),
+... ('kaifiya','dvg','65','76453467','345'),
+... ('nusrath','mountain','45','65737586','458'),
+... ('kaif','green grass','23','57635876','300'),
+... ('sameer','main road','34','55743656','234'),
+... ('lohith','park lane','23','5348763','213'),
+... ]
+mycursor.executemany(sql,val)
+>>> mydb.commit()
+>>> print(mycursor.rowcount,"was inserted.")
+6 was inserted.
+>>> mycursor=mydb.cursor()
+>>> mycursor.execute("select * from libray8095")
+>>> myresult=mycursor.fetchall()
+>>> for x in myresult:
+... print(x)
+...
+('prajwal', 'banglor', '8095', '8095368502', '550')
+('devika', 'lowstreet', '56', '65764878', '250')
+('kaifiya', 'dvg', '65', '76453467', '345')
+('nusrath', 'mountain', '45', '65737586', '458')
+('kaif', 'green grass', '23', '57635876', '300')
+('sameer', 'main road', '34', '55743656', '234')
+('lohith', 'park lane', '23', '5348763', '213')
+>>>
